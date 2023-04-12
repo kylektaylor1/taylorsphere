@@ -1,0 +1,9 @@
+dist
+lib
+build
+node_modules
+.cache
+packages/*/public
+*.d.ts
+
+.next/*

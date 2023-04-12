@@ -1,25 +1,31 @@
 {
-  "name": "taylorsphere",
-  "version": "0.0.0",
-  "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
-  },
-  "devDependencies": {
-    "eslint-config-custom": "workspace:*",
-    "prettier": "latest",
-    "turbo": "latest"
-  },
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "dependencies": {},
-  "packageManager": "pnpm@7.30.3"
+	"name": "taylorsphere",
+	"version": "0.0.0",
+	"private": true,
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"scripts": {
+		"build": "turbo run build",
+		"lint": "turbo run lint",
+		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
+		"dev:taylor": "dotenv -- turbo dev --filter ./apps/taylorsphere",
+		"___💽___ DB Scipts ___💽___": "",
+		"db:gen:migrations": "dotenv -- turbo gen:migrations --filter ./packages/db",
+		"db:seed": "dotenv -- turbo db:seed --filter ./packages/db"
+	},
+	"devDependencies": {
+		"dotenv-cli": "^7.2.1",
+		"eslint-config-custom": "workspace:*",
+		"prettier": "latest",
+		"turbo": "latest"
+	},
+	"engines": {
+		"node": ">=14.0.0"
+	},
+	"dependencies": {
+		"@clerk/nextjs": "^4.15.0"
+	},
+	"packageManager": "pnpm@7.30.3"
 }
