@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Teko';
+    src: url('/fonts/teko/Teko-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Teko';
+    src: url('/fonts/teko/Teko-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Teko';
+    src: url('/fonts/teko/Teko-Medium.ttf') format('truetype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Teko';
+    src: url('/fonts/teko/Teko-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Teko';
+    src: url('/fonts/teko/Teko-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('/fonts/ubuntu/Ubuntu-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('/fonts/ubuntu/Ubuntu-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('/fonts/ubuntu/Ubuntu-Medium.ttf') format('truetype');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('/fonts/ubuntu/Ubuntu-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+@layer base {
+    body {
+        @apply bg-slate-950;
+    }
+}

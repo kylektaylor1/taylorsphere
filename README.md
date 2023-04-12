@@ -1,73 +1,51 @@
-# Turborepo starter
+# Taylorsphere
 
-This is an official pnpm starter turborepo.
+## Requirements
 
-## What's inside?
+1. Node, pnpm, the usual.
+2. Planetscale CLI (`pscale`)
+3. MySQL Client
+4. Turbo (turborepo)
 
-This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes the following packages/apps:
+## Tech Stack
 
-### Apps and Packages
+1. NextJS Fullstack
+2. Planetscale DB
+3. Drizzle ORM
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+## Connecting to Planetscale (db)
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+_This is for development purposes only._
 
-### Utilities
+1. First, create a branch named `local_<insert_branch_name>`
+   a. Use this command: `pscale branch create <branch_name>`
 
-This turborepo has some additional tools already setup for you:
+2. Connect to the database / branch locally.
+   a. Do this by using this command: `pscale connect <DATABASE_NAME> <BRANCH_NAME>`
+   b. This will generate a "proxy" to connect to your app while developing locally.
+   c. This will allow us to create changes, test & iterate as needed before merging into the production database.
+   d. Find the [docs here](https://planetscale.com/docs/tutorials/connect-any-application#option-2-connect-using-the-planetscale-proxy)
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+3./
 
-### Build
+### Helpful Planetscale commands
 
-To build all apps and packages, run the following command:
+-   List all branches for your database `pscale branch list <database_name>`
+-
 
-```
-cd my-turborepo
-pnpm run build
-```
+## Using Drizzle ORM
 
-### Develop
+1. We use the [Drizzle Orm](https://github.com/drizzle-team/drizzle-orm) to manage our migrations and general data typing, etc.
 
-To develop all apps and packages, run the following command:
+### Using drizzle orm
 
-```
-cd my-turborepo
-pnpm run dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-pnpm dlx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
-
-```
-pnpm dlx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+1. You will create your schema changes all within the "schema.ts" file within the "db" package.
+2. You have the following commands to manage migrations:
+   a. `pnpm check:migrations`: This will list the migrations you have applied to the DB so far and other info.
+   b. `pnpm gen:migrations`: This will generate any new migrations from any changes to the `schema.ts` file. Please verify that it generated the migrations correctly! This tool is pretty good, it covers 99% of things easily.
+   c. Need to create a custom migration file to write your own SQL? Use the command `gen:custom:migration`, which will auto-generate a blank file in the `/migrations` folder.
+3. Once you have completed the db work at hand, you can do a few of the following:
+   a. \*\* prefer to do `db push` in drizzle-kit once ready :)
+   b. For now, you need to connect to the db shell through the command and apply the migrations manually.
+   c. Do so by: `pscale shell <database_name> <branch_name>`
+   d. Then copy paste the migrations into the shell and run them. You can copy paste all, it will only apply what is needed.

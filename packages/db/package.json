@@ -1,0 +1,30 @@
+{
+	"name": "db",
+	"version": "0.0.0",
+	"main": "index.ts",
+	"types": "index.ts",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"db:seed": "npx tsx ./seed.ts",
+		"check:migrations": "drizzle-kit check:mysql --out=migrations/",
+		"gen:migrations": "drizzle-kit generate:mysql --config=./drizzle.config.json",
+		"gen:custom:migration": "drizzle-kit generate:mysql --custom"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@planetscale/database": "^1.7.0",
+		"dotenv": "^16.0.3",
+		"drizzle-orm": "^0.23.10",
+		"mysql2": "^3.2.0",
+		"tsconfig": "workspace:*",
+		"zod": "^3.21.4"
+	},
+	"devDependencies": {
+		"@types/node": "^17.0.45",
+		"drizzle-kit": "^0.17.4",
+		"tsx": "^3.12.6",
+		"typescript": "^5.0.4"
+	}
+}
