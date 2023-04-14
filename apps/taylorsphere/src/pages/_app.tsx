@@ -1,5 +1,4 @@
 import { type AppType } from 'next/app';
-import { trpc } from '../utils/trpc';
 import { ClerkProvider } from '@clerk/nextjs';
 
 import '../styles/globals.css';
@@ -12,4 +11,4 @@ const TaylorSphereapp: AppType = ({ pageProps, Component }) => {
     );
 };
 
-export default trpc.withTRPC(TaylorSphereapp);
+export default TaylorSphereapp;
