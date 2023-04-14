@@ -7,17 +7,20 @@ import {
 import ProfileImage from 'src/components/home/ProfileImage';
 import WhatIDo from 'src/components/home/WhatIDo';
 import Skill from 'src/components/skill/Skill';
-import { trpc } from 'src/utils/trpc';
 import { Layout } from '../components/layout/Layout';
-import z from 'zod';
-import { skillSchema } from 'src/utils/zod-schema';
+import useSWR from 'swr';
+import { type Skill as SkillDb } from 'db';
+import { fetcher } from 'src/utils/swr.utils';
 
 const Home: NextPage = () => {
     const description = `Graduate from the University of North Carolina at Chapel Hill, I incorporate talent and technology to create experiences that tap into the culture of the modern digital ecosystem.`;
 
-    const skills = trpc.skill.all.useQuery();
-    console.log(skills.data);
-
+    const { data, error, isLoading } = useSWR(
+        '/api/skill',
+        fetcher<{ skills: SkillDb[] }>,
+    );
+    console.log(data);
+    console.log(error);
     return (
         <Layout>
             <header className="flex h-screen flex-col items-center justify-center">
@@ -31,7 +34,7 @@ const Home: NextPage = () => {
                             {description}
                         </p>
                         <div className="flex flex-row gap-4">
-                            {skills.data?.map((skill, idx) => (
+                            {data?.skills?.map((skill, idx) => (
                                 <Skill
                                     skill={skill}
                                     key={idx}

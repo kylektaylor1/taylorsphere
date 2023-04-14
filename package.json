@@ -8,6 +8,7 @@
 	],
 	"scripts": {
 		"build": "turbo run build",
+		"build:local": "dotenv -- turbo run build:local",
 		"lint": "turbo run lint",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"dev:taylor": "dotenv -- turbo dev --filter ./apps/taylorsphere",
